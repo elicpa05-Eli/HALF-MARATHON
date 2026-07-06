@@ -1,8 +1,10 @@
 const CACHE_NAME = 'half-marathon-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  '/half-marathon/',
+  '/half-marathon/index.html',
+  '/half-marathon/manifest.json',
+  '/half-marathon/icon-192.png',
+  '/half-marathon/icon-512.png'
 ];
 
 self.addEventListener('install', e => {

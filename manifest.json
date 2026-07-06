@@ -2,7 +2,8 @@
   "name": "תכנית חצי מרתון ת\"א 2027",
   "short_name": "חצי מרתון",
   "description": "תכנית אימונים 40 שבועות לחצי מרתון תל אביב 2027",
-  "start_url": "/",
+  "start_url": "/half-marathon/",
+  "scope": "/half-marathon/",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#e8ff47",
@@ -10,12 +11,12 @@
   "lang": "he",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "/half-marathon/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "/half-marathon/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
