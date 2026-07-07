@@ -12,380 +12,161 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --card: #16161f;
-    --border: #2a2a3a;
-    --accent: #e8ff47;
-    --accent2: #47c8ff;
-    --accent3: #ff6b47;
-    --text: #e8e8f0;
-    --muted: #6b6b85;
-    --phase1: #47c8ff;
-    --phase2: #a8ff78;
-    --phase3: #ffb347;
-    --phase4: #ff6b6b;
-    --phase5: #c47aff;
-    --phase6: #e8ff47;
+    --bg: #0a0a0f; --surface: #111118; --card: #16161f; --border: #2a2a3a;
+    --accent: #e8ff47; --accent2: #47c8ff; --accent3: #ff6b47;
+    --text: #e8e8f0; --muted: #6b6b85;
+    --phase1: #47c8ff; --phase2: #a8ff78; --phase3: #ffb347;
+    --phase4: #ff6b6b; --phase5: #c47aff; --phase6: #e8ff47;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; min-height:100vh; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image: linear-gradient(rgba(232,255,71,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(232,255,71,0.03) 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .container { max-width:900px; margin:0 auto; padding:40px 20px 80px; position:relative; z-index:1; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Heebo', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  /* NAV TABS */
+  .nav-tabs { display:flex; gap:4px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:4px; margin-bottom:32px; }
+  .nav-tab { flex:1; padding:10px; text-align:center; border-radius:8px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:1px; cursor:pointer; border:none; background:transparent; color:var(--muted); transition:all 0.2s; }
+  .nav-tab.active { background:var(--accent); color:#000; font-weight:700; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(232,255,71,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,255,71,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* VIEWS */
+  .view { display:none; }
+  .view.active { display:block; }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-    position: relative;
-    z-index: 1;
-  }
+  /* HERO */
+  .hero { text-align:center; padding:60px 0 50px; }
+  .hero-label { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:4px; color:var(--accent); text-transform:uppercase; margin-bottom:20px; display:block; }
+  .hero h1 { font-size:clamp(48px,10vw,96px); font-weight:900; line-height:0.9; letter-spacing:-3px; }
+  .hero h1 .km { color:var(--accent); display:block; font-family:'Space Mono',monospace; }
+  .hero-sub { margin-top:24px; color:var(--muted); font-size:16px; font-weight:300; }
+  .race-date { display:inline-block; margin-top:16px; padding:8px 20px; border:1px solid rgba(232,255,71,0.3); border-radius:20px; font-family:'Space Mono',monospace; font-size:13px; color:var(--accent); }
 
-  .hero {
-    text-align: center;
-    padding: 60px 0 50px;
-  }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin:40px 0; }
+  .stat { background:var(--card); padding:24px 20px; text-align:center; border:1px solid var(--border); }
+  .stat:first-child { border-radius:12px 0 0 12px; }
+  .stat:last-child { border-radius:0 12px 12px 0; }
+  .stat-num { font-family:'Space Mono',monospace; font-size:32px; font-weight:700; color:var(--accent); display:block; line-height:1; }
+  .stat-label { font-size:11px; color:var(--muted); margin-top:6px; display:block; letter-spacing:1px; }
 
-  .hero-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: block;
-    animation: fadeUp 0.6s ease both;
-  }
+  /* PROGRESS BAR */
+  .progress-bar-wrap { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:32px; }
+  .progress-bar-label { display:flex; justify-content:space-between; font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:10px; }
+  .progress-bar-track { background:var(--surface); border-radius:20px; height:10px; overflow:hidden; }
+  .progress-bar-fill { background:linear-gradient(90deg,var(--accent2),var(--accent)); height:100%; border-radius:20px; transition:width 0.5s ease; }
+  .progress-counts { font-family:'Space Mono',monospace; font-size:12px; color:var(--accent); text-align:center; margin-top:8px; }
 
-  .hero h1 {
-    font-size: clamp(48px, 10vw, 96px);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -3px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
+  /* PHASE */
+  .phase { margin-bottom:40px; }
+  .phase-header { display:flex; align-items:center; gap:16px; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .phase-num { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--muted); }
+  .phase-title { font-size:22px; font-weight:700; flex:1; }
+  .phase-weeks { font-family:'Space Mono',monospace; font-size:12px; padding:5px 12px; border-radius:20px; font-weight:700; }
+  .phase-1 .phase-weeks { background:rgba(71,200,255,0.15); color:var(--phase1); }
+  .phase-2 .phase-weeks { background:rgba(168,255,120,0.15); color:var(--phase2); }
+  .phase-3 .phase-weeks { background:rgba(255,179,71,0.15); color:var(--phase3); }
+  .phase-4 .phase-weeks { background:rgba(255,107,107,0.15); color:var(--phase4); }
+  .phase-5 .phase-weeks { background:rgba(196,122,255,0.15); color:var(--phase5); }
+  .phase-6 .phase-weeks { background:rgba(232,255,71,0.15); color:var(--phase6); }
+  .phase-1 .phase-title { color:var(--phase1); }
+  .phase-2 .phase-title { color:var(--phase2); }
+  .phase-3 .phase-title { color:var(--phase3); }
+  .phase-4 .phase-title { color:var(--phase4); }
+  .phase-5 .phase-title { color:var(--phase5); }
+  .phase-6 .phase-title { color:var(--phase6); }
 
-  .hero h1 .km {
-    color: var(--accent);
-    display: block;
-    font-family: 'Space Mono', monospace;
-  }
+  .weeks-grid { display:grid; gap:10px; }
 
-  .hero-sub {
-    margin-top: 24px;
-    color: var(--muted);
-    font-size: 16px;
-    font-weight: 300;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
+  .week-block { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 20px; display:grid; grid-template-columns:120px 1fr; gap:12px; align-items:start; transition:border-color 0.2s; }
+  .week-block:hover { border-color:rgba(100,100,150,0.5); }
 
-  .race-date {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 8px 20px;
-    border: 1px solid rgba(232,255,71,0.3);
-    border-radius: 20px;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--accent);
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
+  .week-label { font-family:'Space Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:1px; line-height:1.6; }
+  .sessions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .session { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-family:'Space Mono',monospace; font-size:12px; color:var(--text); white-space:nowrap; }
+  .phase-1 .session { border-color:rgba(71,200,255,0.3); }
+  .phase-2 .session { border-color:rgba(168,255,120,0.3); }
+  .phase-3 .session { border-color:rgba(255,179,71,0.3); }
+  .phase-4 .session { border-color:rgba(255,107,107,0.3); }
+  .phase-5 .session { border-color:rgba(196,122,255,0.3); }
+  .phase-6 .session { border-color:rgba(232,255,71,0.3); }
+  .session.long { font-weight:700; }
+  .phase-1 .session.long { background:rgba(71,200,255,0.1); color:var(--phase1); }
+  .phase-2 .session.long { background:rgba(168,255,120,0.1); color:var(--phase2); }
+  .phase-3 .session.long { background:rgba(255,179,71,0.1); color:var(--phase3); }
+  .phase-4 .session.long { background:rgba(255,107,107,0.1); color:var(--phase4); }
+  .phase-5 .session.long { background:rgba(196,122,255,0.1); color:var(--phase5); }
 
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin: 40px 0;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
+  .sessions-with-checks { display:flex; flex-direction:column; gap:8px; }
+  .session-row { display:flex; align-items:center; gap:10px; }
+  .session-row .session { flex:1; }
+  .check-btn { width:32px; height:32px; border-radius:50%; border:2px solid var(--border); background:transparent; color:var(--muted); font-size:14px; cursor:pointer; flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+  .check-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .check-btn.done { border-color:rgba(168,255,120,0.6); background:rgba(168,255,120,0.15); color:#a8ff78; }
+  .session-row.done .session { opacity:0.4; text-decoration:line-through; }
+  .week-block.all-done { border-color:rgba(168,255,120,0.4); background:rgba(168,255,120,0.03); }
 
-  .stat {
-    background: var(--card);
-    padding: 24px 20px;
-    text-align: center;
-    border: 1px solid var(--border);
-  }
+  .buffer-note { background:rgba(196,122,255,0.07); border:1px dashed rgba(196,122,255,0.3); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--phase5); margin-bottom:16px; font-family:'Space Mono',monospace; }
 
-  .stat:first-child { border-radius: 12px 0 0 12px; }
-  .stat:last-child { border-radius: 0 12px 12px 0; }
+  /* WORKOUT VIEW */
+  .workout-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:20px; }
+  .workout-title { font-size:20px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+  .workout-sub { font-size:14px; color:var(--muted); margin-bottom:24px; }
 
-  .stat-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--accent);
-    display: block;
-    line-height: 1;
-  }
+  .timer-display { text-align:center; padding:40px 0; }
+  .timer-clock { font-family:'Space Mono',monospace; font-size:72px; font-weight:700; color:var(--accent); line-height:1; letter-spacing:-2px; }
+  .timer-label { font-family:'Space Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:3px; margin-top:8px; }
 
-  .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 6px;
-    display: block;
-    letter-spacing: 1px;
-  }
+  .timer-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0; }
+  .metric { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center; }
+  .metric-val { font-family:'Space Mono',monospace; font-size:24px; font-weight:700; color:var(--accent2); display:block; }
+  .metric-lbl { font-size:11px; color:var(--muted); margin-top:4px; display:block; letter-spacing:1px; }
 
-  .phase {
-    margin-bottom: 40px;
-    animation: fadeUp 0.6s ease both;
-  }
+  .timer-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { padding:14px 28px; border-radius:10px; border:none; font-family:'Space Mono',monospace; font-size:13px; font-weight:700; cursor:pointer; letter-spacing:1px; transition:all 0.2s; }
+  .btn-primary { background:var(--accent); color:#000; }
+  .btn-primary:hover { background:#fff; }
+  .btn-secondary { background:var(--surface); color:var(--text); border:1px solid var(--border); }
+  .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+  .btn-danger { background:rgba(255,107,71,0.15); color:var(--accent3); border:1px solid rgba(255,107,71,0.3); }
+  .btn-danger:hover { background:rgba(255,107,71,0.3); }
 
-  .phase-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
+  .gps-status { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:20px; font-family:'Space Mono',monospace; font-size:11px; margin-bottom:16px; }
+  .gps-status.on { background:rgba(168,255,120,0.1); color:#a8ff78; border:1px solid rgba(168,255,120,0.3); }
+  .gps-status.off { background:rgba(107,107,133,0.1); color:var(--muted); border:1px solid var(--border); }
+  .gps-dot { width:8px; height:8px; border-radius:50%; background:currentColor; animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  .phase-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--muted);
-  }
+  .interval-guide { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 20px; margin:16px 0; }
+  .interval-current { font-family:'Space Mono',monospace; font-size:14px; font-weight:700; }
+  .interval-run { color:var(--accent2); }
+  .interval-walk { color:var(--phase3); }
+  .interval-progress { margin-top:8px; font-size:12px; color:var(--muted); font-family:'Space Mono',monospace; }
 
-  .phase-title {
-    font-size: 22px;
-    font-weight: 700;
-    flex: 1;
-  }
+  /* TIPS */
+  .tips { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px; margin:40px 0; }
+  .tips-title { font-size:14px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:20px; font-family:'Space Mono',monospace; }
+  .tips-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .tip { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; background:var(--surface); border-radius:8px; border:1px solid var(--border); font-size:14px; line-height:1.5; }
+  .tip-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
 
-  .phase-weeks {
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-weight: 700;
-  }
+  .goal-banner { background:linear-gradient(135deg,rgba(232,255,71,0.1),rgba(71,200,255,0.1)); border:1px solid rgba(232,255,71,0.2); border-radius:16px; padding:40px; text-align:center; margin-top:40px; position:relative; overflow:hidden; }
+  .goal-banner::before { content:'🏁'; position:absolute; font-size:120px; opacity:0.05; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .goal-banner h2 { font-size:28px; font-weight:900; position:relative; }
+  .goal-banner p { font-size:16px; opacity:0.7; margin-top:6px; position:relative; font-weight:300; }
 
-  .phase-1 .phase-weeks { background: rgba(71,200,255,0.15); color: var(--phase1); }
-  .phase-2 .phase-weeks { background: rgba(168,255,120,0.15); color: var(--phase2); }
-  .phase-3 .phase-weeks { background: rgba(255,179,71,0.15); color: var(--phase3); }
-  .phase-4 .phase-weeks { background: rgba(255,107,107,0.15); color: var(--phase4); }
-  .phase-5 .phase-weeks { background: rgba(196,122,255,0.15); color: var(--phase5); }
-  .phase-6 .phase-weeks { background: rgba(232,255,71,0.15); color: var(--phase6); }
+  .legend { display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+  .legend-dot { width:8px; height:8px; border-radius:50%; }
+  .divider { height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:40px 0; }
 
-  .phase-1 .phase-title { color: var(--phase1); }
-  .phase-2 .phase-title { color: var(--phase2); }
-  .phase-3 .phase-title { color: var(--phase3); }
-  .phase-4 .phase-title { color: var(--phase4); }
-  .phase-5 .phase-title { color: var(--phase5); }
-  .phase-6 .phase-title { color: var(--phase6); }
-
-  .weeks-grid {
-    display: grid;
-    gap: 10px;
-  }
-
-  .week-block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 20px;
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 16px;
-    align-items: center;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .week-block:hover {
-    border-color: var(--accent);
-    transform: translateX(-3px);
-  }
-
-  .week-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    line-height: 1.6;
-  }
-
-  .week-label .week-dates {
-    display: block;
-    font-size: 10px;
-    color: #444455;
-    margin-top: 3px;
-  }
-
-  .sessions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .session {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--text);
-    white-space: nowrap;
-  }
-
-  .phase-1 .session { border-color: rgba(71,200,255,0.3); }
-  .phase-2 .session { border-color: rgba(168,255,120,0.3); }
-  .phase-3 .session { border-color: rgba(255,179,71,0.3); }
-  .phase-4 .session { border-color: rgba(255,107,107,0.3); }
-  .phase-5 .session { border-color: rgba(196,122,255,0.3); }
-  .phase-6 .session { border-color: rgba(232,255,71,0.3); }
-
-  .session.long { font-weight: 700; }
-  .phase-1 .session.long { background: rgba(71,200,255,0.1); color: var(--phase1); }
-  .phase-2 .session.long { background: rgba(168,255,120,0.1); color: var(--phase2); }
-  .phase-3 .session.long { background: rgba(255,179,71,0.1); color: var(--phase3); }
-  .phase-4 .session.long { background: rgba(255,107,107,0.1); color: var(--phase4); }
-  .phase-5 .session.long { background: rgba(196,122,255,0.1); color: var(--phase5); }
-
-  .buffer-note {
-    background: rgba(196,122,255,0.07);
-    border: 1px dashed rgba(196,122,255,0.3);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--phase5);
-    margin-bottom: 16px;
-    font-family: 'Space Mono', monospace;
-  }
-
-  .tips {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px;
-    margin: 40px 0;
-  }
-
-  .tips-title {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    font-family: 'Space Mono', monospace;
-  }
-
-  .tips-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 16px;
-    background: var(--surface);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-
-  .goal-banner {
-    background: linear-gradient(135deg, rgba(232,255,71,0.1), rgba(71,200,255,0.1));
-    border: 1px solid rgba(232,255,71,0.2);
-    border-radius: 16px;
-    padding: 40px;
-    text-align: center;
-    margin-top: 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .goal-banner::before {
-    content: '🏁';
-    position: absolute;
-    font-size: 120px;
-    opacity: 0.05;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .goal-banner h2 {
-    font-size: 28px;
-    font-weight: 900;
-    position: relative;
-  }
-
-  .goal-banner p {
-    font-size: 16px;
-    opacity: 0.7;
-    margin-top: 6px;
-    position: relative;
-    font-weight: 300;
-  }
-
-  .legend {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  .legend-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 40px 0;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .phase { animation-delay: calc(var(--i) * 0.1s); }
-
-  @media (max-width: 600px) {
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .stat-num { font-size: 24px; }
-    .tips-grid { grid-template-columns: 1fr; }
-    .week-block { grid-template-columns: 1fr; gap: 8px; }
+  @media(max-width:600px){
+    .stats { grid-template-columns:repeat(2,1fr); }
+    .stat-num { font-size:24px; }
+    .tips-grid { grid-template-columns:1fr; }
+    .week-block { grid-template-columns:1fr auto; }
+    .week-block .sessions { grid-column:1; }
+    .timer-clock { font-size:56px; }
+    .timer-metrics { grid-template-columns:repeat(3,1fr); gap:8px; }
+    .metric-val { font-size:18px; }
   }
 </style>
 </head>
@@ -394,305 +175,446 @@
 
   <div class="hero">
     <span class="hero-label">תכנית אימונים · 40 שבועות</span>
-    <h1>
-      חצי<br>מרתון
-      <span class="km">21.1K</span>
-    </h1>
+    <h1>חצי<br>מרתון<span class="km">21.1K</span></h1>
     <p class="hero-sub">מאפס לקו הסיום — צעד אחד בכל פעם</p>
     <span class="race-date">🏅 מרתון ת"א · 26.2.2027</span>
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-num">40</span>
-      <span class="stat-label">שבועות</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('plan')">📋 תכנית</button>
+    <button class="nav-tab" onclick="showView('workout')">⏱️ אימון חי</button>
+  </div>
+
+  <!-- PLAN VIEW -->
+  <div class="view active" id="view-plan">
+
+    <div class="stats">
+      <div class="stat"><span class="stat-num">40</span><span class="stat-label">שבועות</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">אימונים / שבוע</span></div>
+      <div class="stat"><span class="stat-num" id="stat-done">0</span><span class="stat-label">שבועות הושלמו</span></div>
+      <div class="stat"><span class="stat-num" id="stat-left">21</span><span class="stat-label">שבועות נותרו</span></div>
     </div>
-    <div class="stat">
-      <span class="stat-num">3</span>
-      <span class="stat-label">אימונים / שבוע</span>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-label">
+        <span>התקדמות כוללת (לפי אימונים)</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
     </div>
-    <div class="stat">
-      <span class="stat-num">8</span>
-      <span class="stat-label">שבועות חיץ</span>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--phase1)"></div> שלב 1: בסיס</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--phase2)"></div> שלב 2: סיבולת ראשונית</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--phase3)"></div> שלב 3: סיבולת מתקדמת</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--phase4)"></div> שלב 4: הכנה לחצי מרתון</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--phase5)"></div> שלב 5: שמירת כושר</div>
+      <div class="legend-item"><span style="font-family:Space Mono;font-size:11px;background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:4px;color:var(--text)">⭐ ריצה ארוכה</span></div>
+      <div class="legend-item"><span style="font-family:Space Mono;font-size:11px;background:rgba(168,255,120,0.1);border:1px solid rgba(168,255,120,0.4);padding:2px 8px;border-radius:4px;color:#a8ff78">✓ הושלם</span></div>
     </div>
-    <div class="stat">
-      <span class="stat-num">2</span>
-      <span class="stat-label">שלבי טייפר</span>
+
+    <!-- Phase 1 -->
+    <div class="phase phase-1">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 01</span>
+        <h2 class="phase-title">בסיס</h2>
+        <span class="phase-weeks">שבועות 1–8 · (נוכחי: שבוע 5)</span>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w1">
+          <div class="week-label">שבועות 1–2</div>
+          <div class="sessions-with-checks">
+            <div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_1',this)">✓</button></div>
+            <div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_2',this)">✓</button></div>
+            <div class="session-row"><span class="session long">⭐ 3/1 ×6</span><button class="check-btn" onclick="toggleSession('w1_3',this)">✓</button></div>
+          </div>
+        </div>
+        <div class="week-block" id="w2">
+          <div class="week-label">שבועות 3–4</div>
+          <div class="sessions-with-checks">
+            <div class="session-row"><span class="session">3/1 ×7</span><button class="check-btn" onclick="toggleSession('w2_1',this)">✓</button></div>
+            <div class="session-row"><span class="session">4/1 ×6</span><button class="check-btn" onclick="toggleSession('w2_2',this)">✓</button></div>
+            <div class="session-row"><span class="session long">⭐ 5/1 ×5</span><button class="check-btn" onclick="toggleSession('w2_3',this)">✓</button></div>
+          </div>
+        </div>
+        <div class="week-block" id="w3">
+          <div class="week-label">שבועות 5–6 ← כאן אתה</div>
+          <div class="sessions-with-checks">
+            <div class="session-row"><span class="session">6/1 ×4</span><button class="check-btn" onclick="toggleSession('w3_1',this)">✓</button></div>
+            <div class="session-row"><span class="session">8/1 ×3</span><button class="check-btn" onclick="toggleSession('w3_2',this)">✓</button></div>
+            <div class="session-row"><span class="session long">⭐ 10/1 ×3</span><button class="check-btn" onclick="toggleSession('w3_3',this)">✓</button></div>
+          </div>
+        </div>
+        <div class="week-block" id="w4">
+          <div class="week-label">שבועות 7–8</div>
+          <div class="sessions-with-checks">
+            <div class="session-row"><span class="session">12/1 ×2</span><button class="check-btn" onclick="toggleSession('w4_1',this)">✓</button></div>
+            <div class="session-row"><span class="session">15/1 ×2</span><button class="check-btn" onclick="toggleSession('w4_2',this)">✓</button></div>
+            <div class="session-row"><span class="session long">⭐ 20–30 דק׳</span><button class="check-btn" onclick="toggleSession('w4_3',this)">✓</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase phase-2">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 02</span>
+        <h2 class="phase-title">סיבולת ראשונית</h2>
+        <span class="phase-weeks">שבועות 9–16</span>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w5"><div class="week-label">שבועות 9–10</div><div class="sessions-with-checks"><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w5_1',this)">✓</button></div><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w5_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 30 דק׳</span><button class="check-btn" onclick="toggleSession('w5_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w6"><div class="week-label">שבועות 11–12</div><div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w6_1',this)">✓</button></div><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w6_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 35 דק׳</span><button class="check-btn" onclick="toggleSession('w6_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w7"><div class="week-label">שבועות 13–14</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w7_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w7_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 40 דק׳</span><button class="check-btn" onclick="toggleSession('w7_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w8"><div class="week-label">שבועות 15–16</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w8_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w8_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 45–50 דק׳</span><button class="check-btn" onclick="toggleSession('w8_3',this)">✓</button></div></div></div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase phase-3">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 03</span>
+        <h2 class="phase-title">סיבולת מתקדמת</h2>
+        <span class="phase-weeks">שבועות 17–24</span>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w9"><div class="week-label">שבועות 17–18</div><div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w9_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w9_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w9_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w10"><div class="week-label">שבועות 19–20</div><div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w10_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w10_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w10_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w11"><div class="week-label">שבועות 21–22</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w11_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w11_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 65 דק׳</span><button class="check-btn" onclick="toggleSession('w11_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w12"><div class="week-label">שבועות 23–24</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w12_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w12_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 75 דק׳</span><button class="check-btn" onclick="toggleSession('w12_3',this)">✓</button></div></div></div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase phase-4">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 04</span>
+        <h2 class="phase-title">הכנה לחצי מרתון</h2>
+        <span class="phase-weeks">שבועות 25–32</span>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w13"><div class="week-label">שבועות 25–26</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w13_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w13_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 80 דק׳</span><button class="check-btn" onclick="toggleSession('w13_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w14"><div class="week-label">שבועות 27–28</div><div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w14_1',this)">✓</button></div><div class="session-row"><span class="session">55 דק׳</span><button class="check-btn" onclick="toggleSession('w14_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 90 דק׳</span><button class="check-btn" onclick="toggleSession('w14_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w15"><div class="week-label">שבועות 29–30</div><div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w15_1',this)">✓</button></div><div class="session-row"><span class="session">60 דק׳</span><button class="check-btn" onclick="toggleSession('w15_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 100 דק׳</span><button class="check-btn" onclick="toggleSession('w15_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w16"><div class="week-label">שבועות 31–32 · טייפר ראשון</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w16_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w16_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span><button class="check-btn" onclick="toggleSession('w16_3',this)">✓</button></div></div></div>
+      </div>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="phase phase-5">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 05</span>
+        <h2 class="phase-title">שמירת כושר + חיץ</h2>
+        <span class="phase-weeks">שבועות 33–38</span>
+      </div>
+      <div class="buffer-note">💡 שלב זה מאפשר גמישות — ניתן להשתמש בשבועות אלה לפיצוי על מחלות, חופשות או שבועות שהוחמצו</div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w17"><div class="week-label">שבועות 33–34</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w17_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w17_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w17_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w18"><div class="week-label">שבועות 35–36</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w18_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w18_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 55 דק׳</span><button class="check-btn" onclick="toggleSession('w18_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w19"><div class="week-label">שבועות 37–38</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w19_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w19_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w19_3',this)">✓</button></div></div></div>
+      </div>
+    </div>
+
+    <!-- Phase 6 -->
+    <div class="phase phase-6">
+      <div class="phase-header">
+        <span class="phase-num">PHASE 06</span>
+        <h2 class="phase-title">טייפר סופי</h2>
+        <span class="phase-weeks">שבועות 39–40</span>
+      </div>
+      <div class="weeks-grid">
+        <div class="week-block" id="w20"><div class="week-label">שבוע 39</div><div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w20_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w20_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span><button class="check-btn" onclick="toggleSession('w20_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w21"><div class="week-label">שבוע 40 · ימים 1–5</div><div class="sessions-with-checks"><div class="session-row"><span class="session">10–15 דק׳ פריקה</span><button class="check-btn" onclick="toggleSession('w21_1',this)">✓</button></div><div class="session-row"><span class="session">מנוחה</span><button class="check-btn" onclick="toggleSession('w21_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:#e8ff47;border-color:rgba(232,255,71,0.5);font-weight:700">🏁 26.2.2027</span><button class="check-btn" onclick="toggleSession('w21_3',this)">✓</button></div></div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="tips">
+      <div class="tips-title">// דגשים חשובים</div>
+      <div class="tips-grid">
+        <div class="tip"><span class="tip-icon">📈</span><span>לא להעלות עומס אם קשה מדי — עקביות עדיפה על עומס</span></div>
+        <div class="tip"><span class="tip-icon">⚠️</span><span>כאב חד = עצירה מיידית. הגוף מדבר, כדאי להקשיב</span></div>
+        <div class="tip"><span class="tip-icon">⭐</span><span>הריצה הארוכה היא האימון החשוב ביותר בכל שבוע</span></div>
+        <div class="tip"><span class="tip-icon">⚽</span><span>ניתן לשלב כדורגל במקום אחד מהאימונים בשבוע</span></div>
+        <div class="tip"><span class="tip-icon">😴</span><span>יום מנוחה לאחר כל מאמץ — שחזור הוא חלק מהאימון</span></div>
+        <div class="tip"><span class="tip-icon">🗣️</span><span>קצב נוח בלבד — ריצה שבה אפשר לדבר בנוחות</span></div>
+        <div class="tip"><span class="tip-icon">🛡️</span><span>שלב השמירה (33–38) הוא הכרית שלך — אל תדלג עליו בגלל לחץ</span></div>
+        <div class="tip"><span class="tip-icon">📅</span><span>מחלה/חופשה? חזור לאחור שבוע אחד בלבד, אל תדלג קדימה</span></div>
+      </div>
+    </div>
+
+    <div class="goal-banner">
+      <h2>🏅 יעד סופי: מרתון ת"א · 26.2.2027</h2>
+      <p>21.1 ק״מ · 40 שבועות · אתה יכול</p>
     </div>
   </div>
 
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--phase1)"></div> שלב 1: בסיס</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--phase2)"></div> שלב 2: סיבולת ראשונית</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--phase3)"></div> שלב 3: סיבולת מתקדמת</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--phase4)"></div> שלב 4: הכנה לחצי מרתון</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--phase5)"></div> שלב 5: שמירת כושר</div>
-    <div class="legend-item"><span style="font-family:Space Mono;font-size:11px;background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:4px;color:var(--text)">⭐ ריצה ארוכה</span></div>
-  </div>
+  <!-- WORKOUT VIEW -->
+  <div class="view" id="view-workout">
+    <div class="workout-card">
+      <div class="workout-title">⏱️ אימון חי</div>
+      <div class="workout-sub">טיימר + מעקב GPS · הפעל בזמן ריצה</div>
 
-  <!-- Phase 1 -->
-  <div class="phase phase-1" style="--i:0">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 01</span>
-      <h2 class="phase-title">בסיס</h2>
-      <span class="phase-weeks">שבועות 1–8 · (נוכחי: שבוע 5)</span>
-    </div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבועות 1–2</div>
-        <div class="sessions">
-          <span class="session">ריצה/הליכה 2/1 ×8</span>
-          <span class="session">ריצה/הליכה 2/1 ×8</span>
-          <span class="session long">⭐ ריצה/הליכה 3/1 ×6</span>
-        </div>
+      <div style="text-align:center; margin-bottom:16px;">
+        <span class="gps-status off" id="gps-status"><span class="gps-dot"></span> GPS כבוי</span>
       </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 3–4</div>
-        <div class="sessions">
-          <span class="session">3/1 ×7</span>
-          <span class="session">4/1 ×6</span>
-          <span class="session long">⭐ 5/1 ×5</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 5–6 ← כאן אתה</div>
-        <div class="sessions">
-          <span class="session">6/1 ×4</span>
-          <span class="session">8/1 ×3</span>
-          <span class="session long">⭐ 10/1 ×3</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 7–8</div>
-        <div class="sessions">
-          <span class="session">12/1 ×2</span>
-          <span class="session">15/1 ×2</span>
-          <span class="session long">⭐ 20–30 דק׳ רצוף</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Phase 2 -->
-  <div class="phase phase-2" style="--i:1">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 02</span>
-      <h2 class="phase-title">סיבולת ראשונית</h2>
-      <span class="phase-weeks">שבועות 9–16</span>
-    </div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבועות 9–10</div>
-        <div class="sessions">
-          <span class="session">20 דק׳</span>
-          <span class="session">25 דק׳</span>
-          <span class="session long">⭐ 30 דק׳</span>
-        </div>
+      <div class="timer-display">
+        <div class="timer-clock" id="timer-clock">00:00:00</div>
+        <div class="timer-label" id="timer-label">מוכן להתחיל</div>
       </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 11–12</div>
-        <div class="sessions">
-          <span class="session">25 דק׳</span>
-          <span class="session">30 דק׳</span>
-          <span class="session long">⭐ 35 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 13–14</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">35 דק׳</span>
-          <span class="session long">⭐ 40 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 15–16</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">35 דק׳</span>
-          <span class="session long">⭐ 45–50 דק׳</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Phase 3 -->
-  <div class="phase phase-3" style="--i:2">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 03</span>
-      <h2 class="phase-title">סיבולת מתקדמת</h2>
-      <span class="phase-weeks">שבועות 17–24</span>
-    </div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבועות 17–18</div>
-        <div class="sessions">
-          <span class="session">35 דק׳</span>
-          <span class="session">40 דק׳</span>
-          <span class="session long">⭐ 50 דק׳</span>
-        </div>
+      <div class="timer-metrics">
+        <div class="metric"><span class="metric-val" id="metric-dist">0.00</span><span class="metric-lbl">ק"מ</span></div>
+        <div class="metric"><span class="metric-val" id="metric-pace">--:--</span><span class="metric-lbl">דק׳/ק"מ</span></div>
+        <div class="metric"><span class="metric-val" id="metric-cal">0</span><span class="metric-lbl">קלוריות</span></div>
       </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 19–20</div>
-        <div class="sessions">
-          <span class="session">35 דק׳</span>
-          <span class="session">45 דק׳</span>
-          <span class="session long">⭐ 60 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 21–22</div>
-        <div class="sessions">
-          <span class="session">40 דק׳</span>
-          <span class="session">45 דק׳</span>
-          <span class="session long">⭐ 65 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 23–24</div>
-        <div class="sessions">
-          <span class="session">40 דק׳</span>
-          <span class="session">50 דק׳</span>
-          <span class="session long">⭐ 75 דק׳</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Phase 4 -->
-  <div class="phase phase-4" style="--i:3">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 04</span>
-      <h2 class="phase-title">הכנה לחצי מרתון</h2>
-      <span class="phase-weeks">שבועות 25–32</span>
-    </div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבועות 25–26</div>
-        <div class="sessions">
-          <span class="session">40 דק׳</span>
-          <span class="session">50 דק׳</span>
-          <span class="session long">⭐ 80 דק׳</span>
-        </div>
+      <div class="interval-guide" id="interval-box" style="display:none">
+        <div class="interval-current" id="interval-current">טוען...</div>
+        <div class="interval-progress" id="interval-progress"></div>
       </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 27–28</div>
-        <div class="sessions">
-          <span class="session">45 דק׳</span>
-          <span class="session">55 דק׳</span>
-          <span class="session long">⭐ 90 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 29–30</div>
-        <div class="sessions">
-          <span class="session">45 דק׳</span>
-          <span class="session">60 דק׳</span>
-          <span class="session long">⭐ 100 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 31–32 · טייפר ראשון</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">20 דק׳</span>
-          <span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Phase 5 -->
-  <div class="phase phase-5" style="--i:4">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 05</span>
-      <h2 class="phase-title">שמירת כושר + חיץ</h2>
-      <span class="phase-weeks">שבועות 33–38</span>
-    </div>
-    <div class="buffer-note">💡 שלב זה מאפשר גמישות — ניתן להשתמש בשבועות אלה לפיצוי על מחלות, חופשות או שבועות שהוחמצו</div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבועות 33–34</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">35 דק׳</span>
-          <span class="session long">⭐ 50 דק׳</span>
-        </div>
+      <div style="margin:16px 0;">
+        <label style="font-size:13px;color:var(--muted);font-family:Space Mono,monospace;display:block;margin-bottom:8px;">סוג אימון:</label>
+        <select id="workout-type" style="width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-family:Heebo,sans-serif;font-size:14px;">
+          <option value="easy">ריצה קלה / ארוכה</option>
+          <option value="2-1-8">2/1 דק׳ × 8 חזרות</option>
+          <option value="2-1-7">2/1 דק׳ × 7 חזרות</option>
+          <option value="3-1-7">3/1 דק׳ × 7 חזרות</option>
+          <option value="4-1-6">4/1 דק׳ × 6 חזרות</option>
+          <option value="5-1-5">5/1 דק׳ × 5 חזרות</option>
+          <option value="6-1-4">6/1 דק׳ × 4 חזרות</option>
+          <option value="8-1-3">8/1 דק׳ × 3 חזרות</option>
+          <option value="10-1-3">10/1 דק׳ × 3 חזרות</option>
+          <option value="12-1-2">12/1 דק׳ × 2 חזרות</option>
+          <option value="15-1-2">15/1 דק׳ × 2 חזרות</option>
+        </select>
       </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 35–36</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">35 דק׳</span>
-          <span class="session long">⭐ 55 דק׳</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבועות 37–38</div>
-        <div class="sessions">
-          <span class="session">30 דק׳</span>
-          <span class="session">40 דק׳</span>
-          <span class="session long">⭐ 60 דק׳</span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Phase 6 - Final Taper -->
-  <div class="phase phase-6" style="--i:5">
-    <div class="phase-header">
-      <span class="phase-num">PHASE 06</span>
-      <h2 class="phase-title">טייפר סופי</h2>
-      <span class="phase-weeks">שבועות 39–40</span>
-    </div>
-    <div class="weeks-grid">
-      <div class="week-block">
-        <div class="week-label">שבוע 39</div>
-        <div class="sessions">
-          <span class="session">25 דק׳</span>
-          <span class="session">20 דק׳</span>
-          <span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span>
-        </div>
-      </div>
-      <div class="week-block">
-        <div class="week-label">שבוע 40 · ימים 1–5</div>
-        <div class="sessions">
-          <span class="session">10–15 דק׳ פריקה</span>
-          <span class="session">מנוחה</span>
-          <span class="session" style="color:#e8ff47;border-color:rgba(232,255,71,0.5);font-weight:700">🏁 26.2.2027</span>
-        </div>
+      <div class="timer-btns">
+        <button class="btn btn-primary" id="btn-start" onclick="startWorkout()">▶ התחל</button>
+        <button class="btn btn-secondary" id="btn-pause" onclick="pauseWorkout()" style="display:none">⏸ השהה</button>
+        <button class="btn btn-danger" id="btn-stop" onclick="stopWorkout()" style="display:none">■ סיים</button>
       </div>
     </div>
-  </div>
 
-  <div class="divider"></div>
-
-  <div class="tips">
-    <div class="tips-title">// דגשים חשובים</div>
-    <div class="tips-grid">
-      <div class="tip"><span class="tip-icon">📈</span><span>לא להעלות עומס אם קשה מדי — עקביות עדיפה על עומס</span></div>
-      <div class="tip"><span class="tip-icon">⚠️</span><span>כאב חד = עצירה מיידית. הגוף מדבר, כדאי להקשיב</span></div>
-      <div class="tip"><span class="tip-icon">⭐</span><span>הריצה הארוכה היא האימון החשוב ביותר בכל שבוע</span></div>
-      <div class="tip"><span class="tip-icon">⚽</span><span>ניתן לשלב כדורגל במקום אחד מהאימונים בשבוע</span></div>
-      <div class="tip"><span class="tip-icon">😴</span><span>יום מנוחה לאחר כל מאמץ — שחזור הוא חלק מהאימון</span></div>
-      <div class="tip"><span class="tip-icon">🗣️</span><span>קצב נוח בלבד — ריצה שבה אפשר לדבר בנוחות</span></div>
-      <div class="tip"><span class="tip-icon">🛡️</span><span>שלב השמירה (33–38) הוא הכרית שלך — אל תדלג עליו בגלל לחץ</span></div>
-      <div class="tip"><span class="tip-icon">📅</span><span>מחלה/חופשה? חזור לאחור שבוע אחד בלבד, אל תדלג קדימה</span></div>
+    <div class="workout-card" id="last-workout" style="display:none">
+      <div class="workout-title" style="color:var(--phase2)">✓ סיכום אימון אחרון</div>
+      <div class="timer-metrics" style="margin-top:16px;">
+        <div class="metric"><span class="metric-val" id="sum-time" style="color:var(--phase2)">--</span><span class="metric-lbl">זמן</span></div>
+        <div class="metric"><span class="metric-val" id="sum-dist" style="color:var(--phase2)">--</span><span class="metric-lbl">ק"מ</span></div>
+        <div class="metric"><span class="metric-val" id="sum-pace" style="color:var(--phase2)">--</span><span class="metric-lbl">דק׳/ק"מ</span></div>
+      </div>
     </div>
-  </div>
-
-  <div class="goal-banner">
-    <h2>🏅 יעד סופי: מרתון ת"א · 26.2.2027</h2>
-    <p>21.1 ק״מ · 40 שבועות · אתה יכול</p>
   </div>
 
 </div>
+
 <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
-    });
+// ---- NAV ----
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ---- PROGRESS TRACKING (per session) ----
+const TOTAL_SESSIONS = 63; // 21 weeks × 3 sessions
+let doneSessions = JSON.parse(localStorage.getItem('hm_sessions') || '[]');
+
+function toggleSession(id, btn) {
+  const idx = doneSessions.indexOf(id);
+  if (idx >= 0) doneSessions.splice(idx, 1);
+  else doneSessions.push(id);
+  localStorage.setItem('hm_sessions', JSON.stringify(doneSessions));
+  renderProgress();
+}
+
+function renderProgress() {
+  // update each session row
+  document.querySelectorAll('.session-row').forEach(row => {
+    const btn = row.querySelector('.check-btn');
+    if (!btn) return;
+    const sid = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+    const d = doneSessions.includes(sid);
+    btn.classList.toggle('done', d);
+    row.classList.toggle('done', d);
+  });
+  // mark week-block if all 3 sessions done
+  document.querySelectorAll('.week-block').forEach(wb => {
+    const btns = wb.querySelectorAll('.check-btn');
+    const ids = Array.from(btns).map(b => b.getAttribute('onclick').match(/'([^']+)'/)[1]);
+    const allDone = ids.length > 0 && ids.every(id => doneSessions.includes(id));
+    wb.classList.toggle('all-done', allDone);
+  });
+  const n = doneSessions.length;
+  const pct = Math.round(n / TOTAL_SESSIONS * 100);
+  // count completed weeks
+  let completedWeeks = 0;
+  document.querySelectorAll('.week-block').forEach(wb => { if (wb.classList.contains('all-done')) completedWeeks++; });
+  document.getElementById('stat-done').textContent = completedWeeks;
+  document.getElementById('stat-left').textContent = 21 - completedWeeks;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+renderProgress();
+
+// ---- TIMER & GPS ----
+let timerInterval = null, geoWatch = null;
+let elapsed = 0, running = false, paused = false;
+let coords = [], totalDist = 0, lastPos = null;
+let intervalPhase = 'run', intervalElapsed = 0, intervalRep = 0;
+
+function parseCfg(val) {
+  if (val === 'easy') return null;
+  const [runMin, walkMin, reps] = val.split('-').map(Number);
+  return { run: runMin * 60, walk: walkMin * 60, reps, label: runMin + '/' + walkMin };
+}
+
+function fmt(s) {
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  return [h,m,sec].map(x=>String(x).padStart(2,'0')).join(':');
+}
+
+function fmtPace(secPerKm) {
+  if (!secPerKm || !isFinite(secPerKm)) return '--:--';
+  return Math.floor(secPerKm/60) + ':' + String(Math.floor(secPerKm%60)).padStart(2,'0');
+}
+
+function haversine(a, b) {
+  const R = 6371000, dLat = (b.lat-a.lat)*Math.PI/180, dLon = (b.lon-a.lon)*Math.PI/180;
+  const x = Math.sin(dLat/2)**2 + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
+}
+
+function startWorkout() {
+  running = true; paused = false; elapsed = 0; totalDist = 0; lastPos = null; intervalElapsed = 0; intervalRep = 0; intervalPhase = 'run';
+  document.getElementById('btn-start').style.display = 'none';
+  document.getElementById('btn-pause').style.display = 'inline-block';
+  document.getElementById('btn-stop').style.display = 'inline-block';
+  document.getElementById('workout-type').disabled = true;
+  document.getElementById('timer-label').textContent = 'רץ...';
+
+  const cfg = parseCfg(document.getElementById('workout-type').value);
+  if (cfg) {
+    document.getElementById('interval-box').style.display = 'block';
+    updateIntervalUI(cfg);
   }
+
+  // GPS
+  if (navigator.geolocation) {
+    geoWatch = navigator.geolocation.watchPosition(pos => {
+      const accuracy = pos.coords.accuracy;
+      const p = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+      document.getElementById('gps-status').className = 'gps-status on';
+      document.getElementById('gps-status').innerHTML = '<span class="gps-dot"></span> GPS פעיל (' + Math.round(accuracy) + 'm)';
+      if (lastPos && running && !paused) {
+        const d = haversine(lastPos, p);
+        // קבל רק נקודות עם דיוק סביר ותזוזה הגיונית לרץ (0.5–200 מטר)
+        if (accuracy <= 50 && d >= 0.5 && d <= 200) {
+          totalDist += d;
+        }
+      }
+      // עדכן lastPos רק כשהדיוק סביר — מונע צבירת קפיצות GPS
+      if (accuracy <= 50) lastPos = p;
+    }, (err) => {
+      document.getElementById('gps-status').innerHTML = '<span class="gps-dot"></span> שגיאת GPS';
+    }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 10000 });
+  }
+
+  timerInterval = setInterval(() => {
+    if (!running || paused) return;
+    elapsed++;
+    document.getElementById('timer-clock').textContent = fmt(elapsed);
+
+    const distKm = totalDist / 1000;
+    document.getElementById('metric-dist').textContent = distKm.toFixed(2);
+    document.getElementById('metric-pace').textContent = elapsed > 5 && distKm > 0.05 ? fmtPace(elapsed / distKm) : '--:--';
+    document.getElementById('metric-cal').textContent = Math.round(elapsed / 60 * 8.5);
+
+    // intervals
+    if (cfg) {
+      intervalElapsed++;
+      const limit = intervalPhase === 'run' ? cfg.run : cfg.walk;
+      if (intervalElapsed >= limit) {
+        if (intervalPhase === 'run') intervalRep++; // completed a run phase
+        intervalPhase = intervalPhase === 'run' ? 'walk' : 'run';
+        intervalElapsed = 0;
+      }
+      updateIntervalUI(cfg);
+    }
+  }, 1000);
+}
+
+function fmtSec(s) { return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+
+function updateIntervalUI(cfg) {
+  const cur = document.getElementById('interval-current');
+  const prg = document.getElementById('interval-progress');
+  const limit = intervalPhase === 'run' ? cfg.run : cfg.walk;
+  const remaining = limit - intervalElapsed;
+  const totalReps = cfg.reps;
+  // intervalRep counts completed run phases
+  const currentRep = intervalPhase === 'run' ? intervalRep + 1 : intervalRep;
+  const doneReps = intervalRep;
+
+  if (intervalPhase === 'run') {
+    cur.innerHTML = `<span class="interval-run">🏃 רץ</span> <span style="font-size:28px;color:var(--accent);font-family:Space Mono,monospace">${fmtSec(remaining)}</span>`;
+  } else {
+    cur.innerHTML = `<span class="interval-walk">🚶 הולך</span> <span style="font-size:28px;color:var(--phase3);font-family:Space Mono,monospace">${fmtSec(remaining)}</span>`;
+  }
+
+  if (doneReps >= totalReps) {
+    cur.innerHTML = '<span style="color:var(--phase2);font-size:18px">🎉 סיימת את כל החזרות!</span>';
+    prg.textContent = '';
+  } else {
+    prg.textContent = `חזרה ${currentRep > totalReps ? totalReps : currentRep} מתוך ${totalReps} · הושלמו: ${doneReps}`;
+  }
+}
+
+function pauseWorkout() {
+  paused = !paused;
+  document.getElementById('btn-pause').textContent = paused ? '▶ המשך' : '⏸ השהה';
+  document.getElementById('timer-label').textContent = paused ? 'מושהה' : 'רץ...';
+}
+
+function stopWorkout() {
+  running = false; paused = false;
+  clearInterval(timerInterval);
+  if (geoWatch) navigator.geolocation.clearWatch(geoWatch);
+  document.getElementById('btn-start').style.display = 'inline-block';
+  document.getElementById('btn-pause').style.display = 'none';
+  document.getElementById('btn-stop').style.display = 'none';
+  document.getElementById('btn-pause').textContent = '⏸ השהה';
+  document.getElementById('workout-type').disabled = false;
+  document.getElementById('timer-label').textContent = 'מוכן להתחיל';
+  document.getElementById('interval-box').style.display = 'none';
+  document.getElementById('gps-status').className = 'gps-status off';
+  document.getElementById('gps-status').innerHTML = '<span class="gps-dot"></span> GPS כבוי';
+
+  if (elapsed > 10) {
+    const distKm = totalDist / 1000;
+    document.getElementById('last-workout').style.display = 'block';
+    document.getElementById('sum-time').textContent = fmt(elapsed);
+    document.getElementById('sum-dist').textContent = distKm.toFixed(2) + ' ק"מ';
+    document.getElementById('sum-pace').textContent = distKm > 0.05 ? fmtPace(elapsed / distKm) : '--:--';
+  }
+  elapsed = 0; totalDist = 0; lastPos = null;
+  document.getElementById('timer-clock').textContent = '00:00:00';
+  document.getElementById('metric-dist').textContent = '0.00';
+  document.getElementById('metric-pace').textContent = '--:--';
+  document.getElementById('metric-cal').textContent = '0';
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('/HALF-MARATHON/sw.js'); });
+}
 </script>
 </body>
 </html>
