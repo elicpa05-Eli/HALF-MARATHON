@@ -192,7 +192,7 @@
       <div class="stat"><span class="stat-num">40</span><span class="stat-label">שבועות</span></div>
       <div class="stat"><span class="stat-num">3</span><span class="stat-label">אימונים / שבוע</span></div>
       <div class="stat"><span class="stat-num" id="stat-done">0</span><span class="stat-label">שבועות הושלמו</span></div>
-      <div class="stat"><span class="stat-num" id="stat-left">21</span><span class="stat-label">שבועות נותרו</span></div>
+      <div class="stat"><span class="stat-num" id="stat-left">40</span><span class="stat-label">שבועות נותרו</span></div>
     </div>
 
     <div class="progress-bar-wrap">
@@ -215,95 +215,183 @@
       <div class="legend-item"><span style="font-family:Space Mono;font-size:11px;background:rgba(168,255,120,0.1);border:1px solid rgba(168,255,120,0.4);padding:2px 8px;border-radius:4px;color:#a8ff78">✓ הושלם</span></div>
     </div>
 
-    <!-- Phase 1 -->
+    <!-- PHASE 01 -->
     <div class="phase phase-1">
       <div class="phase-header">
         <span class="phase-num">PHASE 01</span>
         <h2 class="phase-title">בסיס</h2>
-        <span class="phase-weeks">שבועות 1–8 · (נוכחי: שבוע 5)</span>
+        <span class="phase-weeks">שבועות 1–8</span>
       </div>
+      
       <div class="weeks-grid">
         <div class="week-block" id="w1">
-          <div class="week-label">שבועות 1–2</div>
-          <div class="sessions-with-checks">
-            <div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_1',this)">✓</button></div>
-            <div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_2',this)">✓</button></div>
-            <div class="session-row"><span class="session long">⭐ 3/1 ×6</span><button class="check-btn" onclick="toggleSession('w1_3',this)">✓</button></div>
-          </div>
+          <div class="week-label">שבוע 1</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_1',this)">✓</button></div><div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w1_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 3/1 ×6</span><button class="check-btn" onclick="toggleSession('w1_3',this)">✓</button></div></div>
         </div>
         <div class="week-block" id="w2">
-          <div class="week-label">שבועות 3–4</div>
-          <div class="sessions-with-checks">
-            <div class="session-row"><span class="session">3/1 ×7</span><button class="check-btn" onclick="toggleSession('w2_1',this)">✓</button></div>
-            <div class="session-row"><span class="session">4/1 ×6</span><button class="check-btn" onclick="toggleSession('w2_2',this)">✓</button></div>
-            <div class="session-row"><span class="session long">⭐ 5/1 ×5</span><button class="check-btn" onclick="toggleSession('w2_3',this)">✓</button></div>
-          </div>
+          <div class="week-label">שבוע 2</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w2_1',this)">✓</button></div><div class="session-row"><span class="session">ריצה/הליכה 2/1 ×8</span><button class="check-btn" onclick="toggleSession('w2_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 3/1 ×6</span><button class="check-btn" onclick="toggleSession('w2_3',this)">✓</button></div></div>
         </div>
         <div class="week-block" id="w3">
-          <div class="week-label">שבועות 5–6 ← כאן אתה</div>
-          <div class="sessions-with-checks">
-            <div class="session-row"><span class="session">6/1 ×4</span><button class="check-btn" onclick="toggleSession('w3_1',this)">✓</button></div>
-            <div class="session-row"><span class="session">8/1 ×3</span><button class="check-btn" onclick="toggleSession('w3_2',this)">✓</button></div>
-            <div class="session-row"><span class="session long">⭐ 10/1 ×3</span><button class="check-btn" onclick="toggleSession('w3_3',this)">✓</button></div>
-          </div>
+          <div class="week-label">שבוע 3</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">3/1 ×7</span><button class="check-btn" onclick="toggleSession('w3_1',this)">✓</button></div><div class="session-row"><span class="session">3/1 ×7</span><button class="check-btn" onclick="toggleSession('w3_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 4/1 ×6</span><button class="check-btn" onclick="toggleSession('w3_3',this)">✓</button></div></div>
         </div>
         <div class="week-block" id="w4">
-          <div class="week-label">שבועות 7–8</div>
-          <div class="sessions-with-checks">
-            <div class="session-row"><span class="session">12/1 ×2</span><button class="check-btn" onclick="toggleSession('w4_1',this)">✓</button></div>
-            <div class="session-row"><span class="session">15/1 ×2</span><button class="check-btn" onclick="toggleSession('w4_2',this)">✓</button></div>
-            <div class="session-row"><span class="session long">⭐ 20–30 דק׳</span><button class="check-btn" onclick="toggleSession('w4_3',this)">✓</button></div>
-          </div>
+          <div class="week-label">שבוע 4</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">4/1 ×6</span><button class="check-btn" onclick="toggleSession('w4_1',this)">✓</button></div><div class="session-row"><span class="session">4/1 ×6</span><button class="check-btn" onclick="toggleSession('w4_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 5/1 ×5</span><button class="check-btn" onclick="toggleSession('w4_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w5">
+          <div class="week-label">שבוע 5 ← כאן אתה</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">6/1 ×4</span><button class="check-btn" onclick="toggleSession('w5_1',this)">✓</button></div><div class="session-row"><span class="session">6/1 ×4</span><button class="check-btn" onclick="toggleSession('w5_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 8/1 ×3</span><button class="check-btn" onclick="toggleSession('w5_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w6">
+          <div class="week-label">שבוע 6</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">6/1 ×4</span><button class="check-btn" onclick="toggleSession('w6_1',this)">✓</button></div><div class="session-row"><span class="session">8/1 ×3</span><button class="check-btn" onclick="toggleSession('w6_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 10/1 ×3</span><button class="check-btn" onclick="toggleSession('w6_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w7">
+          <div class="week-label">שבוע 7</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">12/1 ×2</span><button class="check-btn" onclick="toggleSession('w7_1',this)">✓</button></div><div class="session-row"><span class="session">12/1 ×2</span><button class="check-btn" onclick="toggleSession('w7_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 15/1 ×2</span><button class="check-btn" onclick="toggleSession('w7_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w8">
+          <div class="week-label">שבוע 8</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">15/1 ×2</span><button class="check-btn" onclick="toggleSession('w8_1',this)">✓</button></div><div class="session-row"><span class="session">15/1 ×2</span><button class="check-btn" onclick="toggleSession('w8_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 20–30 דק׳</span><button class="check-btn" onclick="toggleSession('w8_3',this)">✓</button></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Phase 2 -->
+    <!-- PHASE 02 -->
     <div class="phase phase-2">
       <div class="phase-header">
         <span class="phase-num">PHASE 02</span>
         <h2 class="phase-title">סיבולת ראשונית</h2>
         <span class="phase-weeks">שבועות 9–16</span>
       </div>
+      
       <div class="weeks-grid">
-        <div class="week-block" id="w5"><div class="week-label">שבועות 9–10</div><div class="sessions-with-checks"><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w5_1',this)">✓</button></div><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w5_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 30 דק׳</span><button class="check-btn" onclick="toggleSession('w5_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w6"><div class="week-label">שבועות 11–12</div><div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w6_1',this)">✓</button></div><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w6_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 35 דק׳</span><button class="check-btn" onclick="toggleSession('w6_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w7"><div class="week-label">שבועות 13–14</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w7_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w7_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 40 דק׳</span><button class="check-btn" onclick="toggleSession('w7_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w8"><div class="week-label">שבועות 15–16</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w8_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w8_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 45–50 דק׳</span><button class="check-btn" onclick="toggleSession('w8_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w9">
+          <div class="week-label">שבוע 9</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w9_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w9_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 25 דק׳</span><button class="check-btn" onclick="toggleSession('w9_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w10">
+          <div class="week-label">שבוע 10</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w10_1',this)">✓</button></div><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w10_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 30 דק׳</span><button class="check-btn" onclick="toggleSession('w10_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w11">
+          <div class="week-label">שבוע 11</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w11_1',this)">✓</button></div><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w11_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 30 דק׳</span><button class="check-btn" onclick="toggleSession('w11_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w12">
+          <div class="week-label">שבוע 12</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w12_1',this)">✓</button></div><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w12_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 35 דק׳</span><button class="check-btn" onclick="toggleSession('w12_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w13">
+          <div class="week-label">שבוע 13</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w13_1',this)">✓</button></div><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w13_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 35 דק׳</span><button class="check-btn" onclick="toggleSession('w13_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w14">
+          <div class="week-label">שבוע 14</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w14_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w14_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 40 דק׳</span><button class="check-btn" onclick="toggleSession('w14_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w15">
+          <div class="week-label">שבוע 15</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w15_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w15_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 45 דק׳</span><button class="check-btn" onclick="toggleSession('w15_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w16">
+          <div class="week-label">שבוע 16</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w16_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w16_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w16_3',this)">✓</button></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- Phase 3 -->
+    <!-- PHASE 03 -->
     <div class="phase phase-3">
       <div class="phase-header">
         <span class="phase-num">PHASE 03</span>
         <h2 class="phase-title">סיבולת מתקדמת</h2>
         <span class="phase-weeks">שבועות 17–24</span>
       </div>
+      
       <div class="weeks-grid">
-        <div class="week-block" id="w9"><div class="week-label">שבועות 17–18</div><div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w9_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w9_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w9_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w10"><div class="week-label">שבועות 19–20</div><div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w10_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w10_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w10_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w11"><div class="week-label">שבועות 21–22</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w11_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w11_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 65 דק׳</span><button class="check-btn" onclick="toggleSession('w11_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w12"><div class="week-label">שבועות 23–24</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w12_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w12_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 75 דק׳</span><button class="check-btn" onclick="toggleSession('w12_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w17">
+          <div class="week-label">שבוע 17</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w17_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w17_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w17_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w18">
+          <div class="week-label">שבוע 18</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w18_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w18_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 55 דק׳</span><button class="check-btn" onclick="toggleSession('w18_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w19">
+          <div class="week-label">שבוע 19</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w19_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w19_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w19_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w20">
+          <div class="week-label">שבוע 20</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w20_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w20_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w20_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w21">
+          <div class="week-label">שבוע 21</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w21_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w21_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 65 דק׳</span><button class="check-btn" onclick="toggleSession('w21_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w22">
+          <div class="week-label">שבוע 22</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w22_1',this)">✓</button></div><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w22_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 65 דק׳</span><button class="check-btn" onclick="toggleSession('w22_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w23">
+          <div class="week-label">שבוע 23</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w23_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w23_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 70 דק׳</span><button class="check-btn" onclick="toggleSession('w23_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w24">
+          <div class="week-label">שבוע 24</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w24_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w24_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 75 דק׳</span><button class="check-btn" onclick="toggleSession('w24_3',this)">✓</button></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- Phase 4 -->
+    <!-- PHASE 04 -->
     <div class="phase phase-4">
       <div class="phase-header">
         <span class="phase-num">PHASE 04</span>
         <h2 class="phase-title">הכנה לחצי מרתון</h2>
         <span class="phase-weeks">שבועות 25–32</span>
       </div>
+      
       <div class="weeks-grid">
-        <div class="week-block" id="w13"><div class="week-label">שבועות 25–26</div><div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w13_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w13_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 80 דק׳</span><button class="check-btn" onclick="toggleSession('w13_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w14"><div class="week-label">שבועות 27–28</div><div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w14_1',this)">✓</button></div><div class="session-row"><span class="session">55 דק׳</span><button class="check-btn" onclick="toggleSession('w14_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 90 דק׳</span><button class="check-btn" onclick="toggleSession('w14_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w15"><div class="week-label">שבועות 29–30</div><div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w15_1',this)">✓</button></div><div class="session-row"><span class="session">60 דק׳</span><button class="check-btn" onclick="toggleSession('w15_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 100 דק׳</span><button class="check-btn" onclick="toggleSession('w15_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w16"><div class="week-label">שבועות 31–32 · טייפר ראשון</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w16_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w16_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span><button class="check-btn" onclick="toggleSession('w16_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w25">
+          <div class="week-label">שבוע 25</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w25_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w25_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 80 דק׳</span><button class="check-btn" onclick="toggleSession('w25_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w26">
+          <div class="week-label">שבוע 26</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w26_1',this)">✓</button></div><div class="session-row"><span class="session">50 דק׳</span><button class="check-btn" onclick="toggleSession('w26_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 80 דק׳</span><button class="check-btn" onclick="toggleSession('w26_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w27">
+          <div class="week-label">שבוע 27</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w27_1',this)">✓</button></div><div class="session-row"><span class="session">55 דק׳</span><button class="check-btn" onclick="toggleSession('w27_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 85 דק׳</span><button class="check-btn" onclick="toggleSession('w27_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w28">
+          <div class="week-label">שבוע 28</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w28_1',this)">✓</button></div><div class="session-row"><span class="session">55 דק׳</span><button class="check-btn" onclick="toggleSession('w28_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 90 דק׳</span><button class="check-btn" onclick="toggleSession('w28_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w29">
+          <div class="week-label">שבוע 29</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w29_1',this)">✓</button></div><div class="session-row"><span class="session">60 דק׳</span><button class="check-btn" onclick="toggleSession('w29_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 95 דק׳</span><button class="check-btn" onclick="toggleSession('w29_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w30">
+          <div class="week-label">שבוע 30</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">45 דק׳</span><button class="check-btn" onclick="toggleSession('w30_1',this)">✓</button></div><div class="session-row"><span class="session">60 דק׳</span><button class="check-btn" onclick="toggleSession('w30_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 100 דק׳</span><button class="check-btn" onclick="toggleSession('w30_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w31">
+          <div class="week-label">שבוע 31 · טייפר ראשון</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w31_1',this)">✓</button></div><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w31_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 20 דק׳ קל</span><button class="check-btn" onclick="toggleSession('w31_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w32">
+          <div class="week-label">שבוע 32 · טייפר ראשון</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w32_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w32_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ קל מאוד</span><button class="check-btn" onclick="toggleSession('w32_3',this)">✓</button></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- Phase 5 -->
+    <!-- PHASE 05 -->
     <div class="phase phase-5">
       <div class="phase-header">
         <span class="phase-num">PHASE 05</span>
@@ -312,13 +400,34 @@
       </div>
       <div class="buffer-note">💡 שלב זה מאפשר גמישות — ניתן להשתמש בשבועות אלה לפיצוי על מחלות, חופשות או שבועות שהוחמצו</div>
       <div class="weeks-grid">
-        <div class="week-block" id="w17"><div class="week-label">שבועות 33–34</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w17_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w17_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w17_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w18"><div class="week-label">שבועות 35–36</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w18_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w18_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 55 דק׳</span><button class="check-btn" onclick="toggleSession('w18_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w19"><div class="week-label">שבועות 37–38</div><div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w19_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w19_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w19_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w33">
+          <div class="week-label">שבוע 33</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w33_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w33_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w33_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w34">
+          <div class="week-label">שבוע 34</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w34_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w34_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 50 דק׳</span><button class="check-btn" onclick="toggleSession('w34_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w35">
+          <div class="week-label">שבוע 35</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w35_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w35_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 55 דק׳</span><button class="check-btn" onclick="toggleSession('w35_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w36">
+          <div class="week-label">שבוע 36</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w36_1',this)">✓</button></div><div class="session-row"><span class="session">35 דק׳</span><button class="check-btn" onclick="toggleSession('w36_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 55 דק׳</span><button class="check-btn" onclick="toggleSession('w36_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w37">
+          <div class="week-label">שבוע 37</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w37_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w37_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w37_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w38">
+          <div class="week-label">שבוע 38</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">30 דק׳</span><button class="check-btn" onclick="toggleSession('w38_1',this)">✓</button></div><div class="session-row"><span class="session">40 דק׳</span><button class="check-btn" onclick="toggleSession('w38_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ 60 דק׳</span><button class="check-btn" onclick="toggleSession('w38_3',this)">✓</button></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- Phase 6 -->
+    <!-- PHASE 06 -->
     <div class="phase phase-6">
       <div class="phase-header">
         <span class="phase-num">PHASE 06</span>
@@ -326,8 +435,14 @@
         <span class="phase-weeks">שבועות 39–40</span>
       </div>
       <div class="weeks-grid">
-        <div class="week-block" id="w20"><div class="week-label">שבוע 39</div><div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w20_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w20_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:var(--accent);border-color:rgba(232,255,71,0.4)">קל מאוד</span><button class="check-btn" onclick="toggleSession('w20_3',this)">✓</button></div></div></div>
-        <div class="week-block" id="w21"><div class="week-label">שבוע 40 · ימים 1–5</div><div class="sessions-with-checks"><div class="session-row"><span class="session">10–15 דק׳ פריקה</span><button class="check-btn" onclick="toggleSession('w21_1',this)">✓</button></div><div class="session-row"><span class="session">מנוחה</span><button class="check-btn" onclick="toggleSession('w21_2',this)">✓</button></div><div class="session-row"><span class="session" style="color:#e8ff47;border-color:rgba(232,255,71,0.5);font-weight:700">🏁 26.2.2027</span><button class="check-btn" onclick="toggleSession('w21_3',this)">✓</button></div></div></div>
+        <div class="week-block" id="w39">
+          <div class="week-label">שבוע 39 · טייפר סופי</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">25 דק׳</span><button class="check-btn" onclick="toggleSession('w39_1',this)">✓</button></div><div class="session-row"><span class="session">20 דק׳</span><button class="check-btn" onclick="toggleSession('w39_2',this)">✓</button></div><div class="session-row"><span class="session long">⭐ קל מאוד</span><button class="check-btn" onclick="toggleSession('w39_3',this)">✓</button></div></div>
+        </div>
+        <div class="week-block" id="w40">
+          <div class="week-label">שבוע 40 · לפני המרתון</div>
+          <div class="sessions-with-checks"><div class="session-row"><span class="session">15 דק׳ פריקה</span><button class="check-btn" onclick="toggleSession('w40_1',this)">✓</button></div><div class="session-row"><span class="session">מנוחה</span><button class="check-btn" onclick="toggleSession('w40_2',this)">✓</button></div><div class="session-row"><span class="session long">🏁 26.2.2027</span><button class="check-btn" onclick="toggleSession('w40_3',this)">✓</button></div></div>
+        </div>
       </div>
     </div>
 
@@ -425,7 +540,7 @@ function showView(v) {
 }
 
 // ---- PROGRESS TRACKING (per session) ----
-const TOTAL_SESSIONS = 63; // 21 weeks × 3 sessions
+const TOTAL_SESSIONS = 120; // 40 weeks × 3 sessions // 21 weeks × 3 sessions
 let doneSessions = JSON.parse(localStorage.getItem('hm_sessions') || '[]');
 
 function toggleSession(id, btn) {
@@ -459,7 +574,7 @@ function renderProgress() {
   let completedWeeks = 0;
   document.querySelectorAll('.week-block').forEach(wb => { if (wb.classList.contains('all-done')) completedWeeks++; });
   document.getElementById('stat-done').textContent = completedWeeks;
-  document.getElementById('stat-left').textContent = 21 - completedWeeks;
+  document.getElementById('stat-left').textContent = 40 - completedWeeks;
   document.getElementById('progress-pct').textContent = pct + '%';
   document.getElementById('progress-fill').style.width = pct + '%';
 }
